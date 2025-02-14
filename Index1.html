@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-colo#ffdc00r: #ffe6f2;
+            overflow: hidden;
+            transition: background 1s;
+        }
+
+        .contenedor {
+            margin-top: 50px;
+        }
+
+        .boton {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .si {
+            background-color: #ff6699;
+            color: white;
+        }
+
+        .no {
+            background-color: #ffcc00;
+            color: black;
+        }
+
+        .oculto {
+            display: none;
+        }
+
+        h1 {
+            transition: opacity 1s;
+        }
+
+        .frases {
+            font-size: 22px;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .peluche {
+            width: 150px;
+            margin-top: 20px;
+        }
+
+        .imagen-sulma {
+            width: 90%;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        /* Animación AMIGA */
+        .amiga {
+            font-size: 50px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .amiga span {
+            animation: vibrar 0.5s infinite alternate;
+        }
+
+        .amiga span:nth-child(1) {
+            color: red;
+            animation-delay: 0s;
+        }
+
+        .amiga span:nth-child(2) {
+            color: blue;
+            animation-delay: 0.1s;
+        }
+
+        .amiga span:nth-child(3) {
+            color: green;
+            animation-delay: 0.2s;
+        }
+
+        .amiga span:nth-child(4) {
+            color: orange;
+            animation-delay: 0.3s;
+        }
+
+        .amiga span:nth-child(5) {
+            color: purple;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes vibrar {
+            from {
+                transform: translateY(-3px);
+            }
+
+            to {
+                transform: translateY(3px);
+            }
+        }
+
+        .imagen-sorpresa {
+            width: 90%;
+            max-width: 300px;
+            margin-top: 20px;
+        }
+
+        /* Animación SORPRESA */
+        .sorpresa-animada {
+            font-size: 3em;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .sorpresa-animada span {
+            animation: cambiarColor 2s linear infinite, arribaAbajo 1s ease-in-out infinite alternate;
+            /* Puedes ajustar la duración y el tipo de animación */
+        }
+
+        @keyframes cambiarColor {
+            0% {
+                color: red;
+            }
+
+            20% {
+                color: orange;
+            }
+
+            40% {
+                color: yellow;
+            }
+
+            60% {
+                color: green;
+            }
+
+            80% {
+                color: blue;
+            }
+
+            100% {
+                color: purple;
+            }
+        }
+
+        @keyframes arribaAbajo {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Estilos para los corazones y flores */
+        .corazon,
+        .flor {
+            position: absolute;
+            font-size: 2em;
+            /* Ajusta el tamaño */
+            z-index: 1000;
+            /* Asegura que estén por encima del contenido */
+        }
+
+        .corazon {
+            animation: caerCorazon 5s linear infinite;
+            /* Ajusta la duración y la función de temporización */
+        }
+
+        .flor {
+            animation: subirFlor 5s linear infinite;
+            /* Ajusta la duración y la función de temporización */
+        }
+
+        @keyframes caerCorazon {
+            0% {
+                transform: translateY(-10vh);
+                opacity: 0;
+                color: red;
+            }
+
+            25%{
+                color: rgb(255, 38, 0);
+                opacity: 1;
+            }
+
+            50%{
+                color: rgb(255, 115, 0);
+            }
+
+            75%{
+                color: rgb(255, 174, 0);
+            }
+
+            100% {
+                transform: translateY(110vh);
+                opacity: 0;
+                color: rgb(255, 255, 0);
+            }
+        }
+
+        @keyframes subirFlor {
+            0% {
+                transform: translateY(110vh);
+                opacity: 0;
+                color: rgb(0, 255, 64);
+            }
+
+            25%{
+                color: rgb(12, 255, 0);
+                opacity: 1;
+            }
+
+            50%{
+                color: rgb(80, 255, 0);
+            }
+
+            75%{
+                color: rgb(153, 255, 0);
+            }
+
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+                color: rgb(221, 255, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Primera pregunta con imagen -->
+    <div id="pregunta" class="contenedor">
+        <div class="amiga">
+            <span>A</span>
+            <span>M</span>
+            <span>I</span>
+            <span>G</span>
+            <span>A</span>
+        </div>
+        <img src="capibara_sulma.png" alt="Amiga" class="peluche">
+        <h1>¿Te gustaría ser mi San Valentín?</h1>
+        <button class="boton si" onclick="mostrarSegundaPregunta()">Sí</button>
+        <button class="boton no" onclick="mostrarPorfis()">No</button>
+    </div>
+
+    <!-- Segunda pregunta con frases arriba -->
+    <div id="pregunta2" class="contenedor oculto">
+        <p id="frase1" class="frases">🌹 Desde que llegaste a mi vida, todo tiene más color y alegría.</p>
+        <p id="frase2" class="frases">💖 Eres la persona con la que quiero compartir mis mejores momentos.</p>
+        <p id="frase3" class="frases">✨ Cada sonrisa tuya ilumina mi día y hace que todo valga la pena.</p>
+        <p id="frase4" class="frases">💕 Eres la respuesta a mis oraciones y el sueño que nunca quiero despertar.</p>
+
+        <h1>¿Estás segura que quieres ser mi San Valentín? 🤭</h1>
+        <button class="boton si" onclick="mostrarSorpresa()">Sí</button>
+        <button class="boton no" onclick="mostrarPorfis()">No</button>
+    </div>
+
+    <!-- Mensaje si dice "No" con frases arriba -->
+    <div id="porfis" class="contenedor oculto">
+        <p id="frasePorfis1" class="frases">💕 Eres mi persona favorita y me harías muy feliz si aceptas.</p>
+        <p id="frasePorfis2" class="frases">🌹 Prometo hacerte sonreír todos los días.</p>
+        <p id="frasePorfis3" class="frases">✨ Un San Valentín contigo sería el mejor regalo del mundo.</p>
+
+        <h1>Por fis, sé mi San Valentín ❤️</h1>
+        <img src="capibara_triste.png" alt="Capibara triste" class="peluche">
+        <button class="boton si" onclick="mostrarSorpresa()">Sí</button>
+        <button class="boton no" onclick="mostrarUltimaOportunidad()">No</button>
+    </div>
+
+    <!-- Última oportunidad con nuevas frases e imagen -->
+    <div id="ultimaOportunidad" class="contenedor oculto">
+        <p id="fraseUltima1" class="frases">🌸 No digas que no, vamos di que sí.</p>
+        <p id="fraseUltima2" class="frases">❤️ Puedes y tendrás una sorpresa increíble.</p>
+        <p id="fraseUltima3" class="frases">🌟 Acepta y compartiremos momentos inolvidables.</p>
+
+        <h1>No digas que no, vamos di que sí, puedes y tendrás una sorpresa 😍</h1>
+        <img src="patito_gwe.png" alt="patito" class="peluche">
+        <button class="boton si" onclick="mostrarSorpresa()">Sí acepto</button>
+    </div>
+    <!-- Sorpresa final -->
+    <div id="sorpresa" class="contenedor oculto">
+        <div class="sorpresa-animada">
+            <span>S</span><span>O</span><span>R</span><span>P</span><span>R</span><span>E</span><span>S</span><span>A</span>
+        </div>
+        <img src="sorpresa.png" alt="Imagen de sorpresa" class="imagen-sorpresa">
+        <p id="fraseSorpresa1" class="frases">Eres lo más especial que tengo. 💖</p>
+        <p id="fraseSorpresa2" class="frases">Cada día a tu lado es un regalo. 💐</p>
+        <p id="fraseSorpresa3" class="frases">Te quiero más que a nada en este mundo. ❤️</p>
+        <p id="fraseSorpresa4" class="frases">Gracias por ser mi San Valentín. 🌷</p>
+        <p id="fraseSorpresa5" class="frases">Eres mi persona favorita por siempre. 🌸</p>
+
+        <audio id="musicaSorpresa" autoplay loop>
+            <source src="musica_san_valentin.mp3" type="audio/mpeg">
+            Tu navegador no soporta la reproducción de audio.
+        </audio>
+    </div>
+
+    <script>
+        function mostrarPorfis() {
+            document.getElementById("pregunta").style.display = "none";
+            document.getElementById("pregunta2").style.display = "none";
+            document.getElementById("porfis").style.display = "block";
+
+            let frasesPorfis = ["frasePorfis1", "frasePorfis2", "frasePorfis3"];
+            frasesPorfis.forEach((id, index) => {
+                setTimeout(() => {
+                    document.getElementById(id).style.opacity = "1";
+                }, index * 2000);
+            });
+        }
+
+        function mostrarUltimaOportunidad() {
+            document.getElementById("porfis").style.display = "none";
+            document.getElementById("ultimaOportunidad").style.display = "block";
+
+            let frasesUltima = ["fraseUltima1", "fraseUltima2", "fraseUltima3"];
+            frasesUltima.forEach((id, index) => {
+                setTimeout(() => {
+                    document.getElementById(id).style.opacity = "1";
+                }, index * 2000);
+            });
+        }
+
+        function mostrarSegundaPregunta() {
+            document.getElementById("pregunta").style.display = "none";
+            document.getElementById("pregunta2").style.display = "block";
+
+            let frases = ["frase1", "frase2", "frase3", "frase4"];
+            frases.forEach((id, index) => {
+                setTimeout(() => {
+                    document.getElementById(id).style.opacity = "1";
+                }, index * 2000);
+            });
+        }
+
+        function mostrarSorpresa() {
+            document.body.style.backgroundColor = "#ffcccc";
+            document.getElementById("pregunta2").style.display = "none";
+            document.getElementById("porfis").style.display = "none";
+            document.getElementById("ultimaOportunidad").style.display = "none";
+            document.getElementById("sorpresa").style.display = "block";
+
+            // Animación para las frases de la sorpresa
+            let frasesSorpresa = ["fraseSorpresa1", "fraseSorpresa2", "fraseSorpresa3", "fraseSorpresa4", "fraseSorpresa5"];
+            frasesSorpresa.forEach((id, index) => {
+                setTimeout(() => {
+                    document.getElementById(id).style.opacity = "1";
+                }, index * 2000);
+            });
+
+            // Crea los corazones y flores infinitos
+            setInterval(crearCorazon, 200); // Ajusta la velocidad de creación
+            setInterval(crearFlor, 300);    // Ajusta la velocidad de creación
+        }
+
+        function crearCorazon() {
+            const corazon = document.createElement('span');
+            corazon.classList.add('corazon');
+            corazon.textContent = '💖'; // Puedes cambiar el emoji
+            document.getElementById('sorpresa').appendChild(corazon);
+            corazon.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+            corazon.style.animationDuration = Math.random() * 5 + 3 + 's'; // Duración aleatoria de la animación
+            
+            setTimeout(() => {
+                corazon.remove();
+            }, 5000); // Elimina el corazón después de que termine la animación
+        }
+
+        function crearFlor() {
+            const flor = document.createElement('span');
+            flor.classList.add('flor');
+            flor.textContent = '🌷'; // Puedes cambiar el emoji
+            document.getElementById('sorpresa').appendChild(flor);
+            flor.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+            flor.style.animationDuration = Math.random() * 5 + 3 + 's'; // Duración aleatoria de la animación
+
+            setTimeout(() => {
+                flor.remove();
+            }, 5000); // Elimina la flor después de que termine la animación
+        }
+    </script>
+
+</body>
+
+</html>
